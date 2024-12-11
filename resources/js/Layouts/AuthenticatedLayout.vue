@@ -35,7 +35,7 @@ const showingNavigationDropdown = ref(false)
                   :href="route('dashboard')"
                   :active="route().current('dashboard')"
                 >
-                  Dashboard
+                  {{ $t('Dashboard') }}
                 </NavLink>
               </div>
             </div>
@@ -70,14 +70,14 @@ const showingNavigationDropdown = ref(false)
 
                   <template #content>
                     <DropdownLink :href="route('profile.edit')">
-                      Profile
+                      {{ $t('Profile') }}
                     </DropdownLink>
                     <DropdownLink
                       :href="route('logout')"
                       method="post"
                       as="button"
                     >
-                      Log Out
+                      {{ $t('Log Out') }}
                     </DropdownLink>
                   </template>
                 </Dropdown>
@@ -135,7 +135,7 @@ const showingNavigationDropdown = ref(false)
               :href="route('dashboard')"
               :active="route().current('dashboard')"
             >
-              Dashboard
+              {{ $t('Dashboard') }}
             </ResponsiveNavLink>
           </div>
 
@@ -154,14 +154,14 @@ const showingNavigationDropdown = ref(false)
 
             <div class="mt-3 space-y-1">
               <ResponsiveNavLink :href="route('profile.edit')">
-                Profile
+                {{ $t('Profile') }}
               </ResponsiveNavLink>
               <ResponsiveNavLink
                 :href="route('logout')"
                 method="post"
                 as="button"
               >
-                Log Out
+                {{ $t('Log Out') }}
               </ResponsiveNavLink>
             </div>
           </div>
