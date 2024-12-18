@@ -1,4 +1,5 @@
 <script setup>
+import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import SelectInput from '@/Components/SelectInput.vue'
@@ -32,7 +33,14 @@ const submit = () => {
   if (currentStep.value < 3) {
     currentStep.value = currentStep.value + 1
   } else {
-    // Post form
+    form.post(route('multi-step.store'), {
+      onError: errors => {
+        let firstErrorKey = Object.keys(errors)[0]
+        let stepNumberMatch = firstErrorKey.match(/step(\d+)/)
+
+        currentStep.value = Number(stepNumberMatch[1])
+      },
+    })
   }
 }
 </script>
@@ -115,6 +123,10 @@ const submit = () => {
                       {{ country.name }}
                     </option>
                   </SelectInput>
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step1.from_country']"
+                  />
                 </div>
 
                 <div class="mt-4">
@@ -133,6 +145,10 @@ const submit = () => {
                       {{ city.name }}
                     </option>
                   </SelectInput>
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step1.from_city']"
+                  />
                 </div>
               </div>
 
@@ -153,6 +169,10 @@ const submit = () => {
                       {{ country.name }}
                     </option>
                   </SelectInput>
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step2.to_country']"
+                  />
                 </div>
 
                 <div class="mt-4">
@@ -171,6 +191,10 @@ const submit = () => {
                       {{ city.name }}
                     </option>
                   </SelectInput>
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step2.to_city']"
+                  />
                 </div>
               </div>
 
@@ -180,20 +204,30 @@ const submit = () => {
                   <TextInput
                     id="adults-number"
                     type="number"
+                    min="0"
                     class="mt-2"
                     v-model="form.step3.adults"
                     required
+                  />
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step3.adults']"
                   />
                 </div>
 
                 <div class="mt-4">
                   <InputLabel for="children-number" :value="$t('Children')" />
                   <TextInput
-                    id="adults-number"
+                    id="children-number"
                     type="number"
+                    min="0"
                     class="mt-2"
                     v-model="form.step3.children"
                     required
+                  />
+                  <InputError
+                    class="mt-2"
+                    :message="form.errors['step3.children']"
                   />
                 </div>
               </div>

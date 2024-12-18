@@ -255,6 +255,18 @@ return [
         'started_at' => 'comenzado el',
         'state' => 'estado',
         'status' => 'estado',
+        'step1' => [
+            'from_country' => 'desde el país',
+            'from_city' => 'desde la ciudad',
+        ],
+        'step2' => [
+            'to_country' => 'al país',
+            'to_city' => 'a la ciudad',
+        ],
+        'step3' => [
+            'adults' => 'adultos',
+            'children' => 'niños',
+        ],
         'street' => 'calle',
         'student' => 'estudiante',
         'subject' => 'asunto',
